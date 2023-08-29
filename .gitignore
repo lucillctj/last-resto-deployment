@@ -1,0 +1,6 @@
+node_modules
+.env
+.idea/
+workspace.xml
+.DS_Store
+.vscode
