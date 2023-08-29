@@ -26,5 +26,8 @@
   "devDependencies": {
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.13"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
