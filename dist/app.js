@@ -18,7 +18,6 @@ const adminRoutes_1 = require("./routes/adminRoutes");
 const usersRoutes_1 = require("./routes/usersRoutes");
 const helmet_1 = __importDefault(require("helmet"));
 const path_1 = __importDefault(require("path"));
-const body_parser_1 = __importDefault(require("body-parser"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const corsOptions = {
@@ -27,7 +26,6 @@ const corsOptions = {
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use((0, cookie_parser_1.default)());
-app.use(body_parser_1.default.json());
 app.use(express_1.default.json());
 const apiLimiter = (0, express_rate_limit_1.default)({
     windowMs: 15 * 60 * 1000,
