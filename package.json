@@ -9,7 +9,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@tsconfig/node18": "^18.2.1",
+    "@tsconfig/node17": "^17.1.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -22,5 +22,9 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4",
     "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.13"
   }
 }
