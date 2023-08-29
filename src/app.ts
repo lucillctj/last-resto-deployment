@@ -21,6 +21,7 @@ const corsOptions = {
     origin: 'http://localhost:4200',
     credentials: true
 };
+
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
@@ -32,11 +33,7 @@ const apiLimiter = rateLimit({
     legacyHeaders: false,
 });
 app.use(apiLimiter);
-
-app.use(express.static(path.join(__dirname, 'view/dist')));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'view', 'dist', 'index.html'));
-});
+app.use(express.static(process.cwd()+"/dist/view/dist/"));
 
 app.use(helmet());
 
@@ -47,6 +44,9 @@ app.use('/users', usersRoutes());
 app.use('/restaurants', restaurantRoutes());
 app.use('/products', productRoutes());
 
+app.get('/', (req,res) => {
+    res.sendFile(process.cwd()+"/dist/view/dist/index.html")
+});
 
 const PORT = process.env.PORT || 3030;
 app.listen(PORT, () => {

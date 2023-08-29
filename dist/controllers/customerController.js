@@ -35,8 +35,7 @@ class CustomerController {
                         (0, auth_1.setTokenCookie)(res, accessToken);
                         res.status(201).send({
                             message: `Utilisateur avec le rôle 'customer' a été créé !`,
-                            userId: results.insertId,
-                            accessToken
+                            userId: results.insertId
                         });
                     }
                 });
