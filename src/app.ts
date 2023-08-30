@@ -10,15 +10,16 @@ import {restaurantRoutes} from "./routes/restaurantRoutes";
 import {productRoutes} from "./routes/productRoutes";
 import {adminRoutes} from "./routes/adminRoutes";
 import {usersRoutes} from "./routes/usersRoutes";
-import helmet from 'helmet';
 import path from "path";
+// import helmet from "helmet";
 
 dotenv.config();
 
 const app: Express = express();
+app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 
 const corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: 'https://last-resto-web-service.onrender.com',
     credentials: true
 };
 
@@ -30,12 +31,12 @@ const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100,
     standardHeaders: true,
-    legacyHeaders: false,
+    legacyHeaders: false
 });
 app.use(apiLimiter);
-app.use(express.static(process.cwd()+"/dist/view/dist/"));
 
-app.use(helmet());
+app.use(express.static(process.cwd()+"/dist/view/dist/"));
+// app.use(helmet());
 
 app.use('/customers', customerRoutes());
 app.use('/restaurant-owners', restaurantOwnerRoutes());
@@ -45,7 +46,8 @@ app.use('/restaurants', restaurantRoutes());
 app.use('/products', productRoutes());
 
 app.get('/', (req,res) => {
-    res.sendFile(process.cwd()+"/dist/view/dist/index.html")
+    res.sendFile(process.cwd()+"/dist/view/dist/index.html");
+    // res.sendFile(path.resolve("dist/view/dist/index.html"))
 });
 
 const PORT = process.env.PORT || 3030;
@@ -62,13 +64,3 @@ db.connect((error: QueryError | null) => {
     }
     console.log('Connected to MySQL database :)');
 });
-
-
-
-
-
-
-
-
-
-

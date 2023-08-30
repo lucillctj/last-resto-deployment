@@ -16,11 +16,13 @@ const restaurantRoutes_1 = require("./routes/restaurantRoutes");
 const productRoutes_1 = require("./routes/productRoutes");
 const adminRoutes_1 = require("./routes/adminRoutes");
 const usersRoutes_1 = require("./routes/usersRoutes");
-const helmet_1 = __importDefault(require("helmet"));
+const path_1 = __importDefault(require("path"));
+// import helmet from "helmet";
 dotenv_1.default.config();
 const app = (0, express_1.default)();
+app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 const corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: 'https://last-resto-web-service.onrender.com',
     credentials: true
 };
 app.use((0, cors_1.default)(corsOptions));
@@ -30,11 +32,11 @@ const apiLimiter = (0, express_rate_limit_1.default)({
     windowMs: 15 * 60 * 1000,
     max: 100,
     standardHeaders: true,
-    legacyHeaders: false,
+    legacyHeaders: false
 });
 app.use(apiLimiter);
 app.use(express_1.default.static(process.cwd() + "/dist/view/dist/"));
-app.use((0, helmet_1.default)());
+// app.use(helmet());
 app.use('/customers', (0, customerRoutes_1.customerRoutes)());
 app.use('/restaurant-owners', (0, restaurantOwnerRoutes_1.restaurantOwnerRoutes)());
 app.use('/admins', (0, adminRoutes_1.adminRoutes)());
@@ -42,7 +44,8 @@ app.use('/users', (0, usersRoutes_1.usersRoutes)());
 app.use('/restaurants', (0, restaurantRoutes_1.restaurantRoutes)());
 app.use('/products', (0, productRoutes_1.productRoutes)());
 app.get('/', (req, res) => {
-    res.sendFile(process.cwd() + "/dist/view/dist/index.html");
+    // res.sendFile(process.cwd()+"/dist/view/dist/index.html");
+    res.sendFile(path_1.default.resolve("dist/view/dist/index.html"));
 });
 const PORT = process.env.PORT || 3030;
 app.listen(PORT, () => {
