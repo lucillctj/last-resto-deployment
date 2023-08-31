@@ -20,22 +20,9 @@
     "mysql2": "^3.2.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4",
-    "yarn": "^1.22.19"
-  },
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
-    "@types/body-parser": "^1.19.2",
+    "yarn": "^1.22.19",
     "@types/cookie-parser": "^1.4.3",
-    "@types/cors": "^2.8.13",
-    "@types/dotenv": "^8.2.0",
-    "@types/express": "^4.17.15",
-    "@types/helmet": "^4.0.0",
-    "@types/json-schema": "^7.0.12",
-    "@types/jsonwebtoken": "^9.0.1",
-    "@types/node": "^20.5.7",
-    "helmet": "^7.0.0",
-    "nodemon": "^3.0.1",
-    "ts-node": "^10.9.1"
+    "@types/cors": "^2.8.13"
   },
   "engines": {
     "node": ">=14"

@@ -10,7 +10,6 @@ import {restaurantRoutes} from "./routes/restaurantRoutes";
 import {productRoutes} from "./routes/productRoutes";
 import {adminRoutes} from "./routes/adminRoutes";
 import {usersRoutes} from "./routes/usersRoutes";
-import path from "path";
 // import helmet from "helmet";
 
 dotenv.config();
@@ -22,7 +21,6 @@ const corsOptions = {
     origin: 'https://last-resto-web-service.onrender.com',
     credentials: true
 };
-
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
