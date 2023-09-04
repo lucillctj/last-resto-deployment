@@ -22,7 +22,7 @@ class ProductController {
             });
         }
         catch (error) {
-            res.status(500).json({ message: "Internal server error" });
+            res.status(500).json({ message: 'Internal server error' });
         }
     }
     static async getRestaurantIdByProductId(req, res) {
@@ -33,7 +33,7 @@ class ProductController {
             });
         }
         catch (error) {
-            res.status(500).json({ message: "Internal server error" });
+            res.status(500).json({ message: 'Internal server error' });
         }
     }
     static async getProductById(req, res) {
@@ -43,7 +43,9 @@ class ProductController {
                 if (error)
                     throw error;
                 else if (!results) {
-                    res.status(404).send({ message: "Id doesn't exist or doesn't have the right format" });
+                    res.status(404).send({
+                        message: "Id doesn't exist or doesn't have the right format"
+                    });
                 }
                 else {
                     res.status(200).send(results[0]);
@@ -51,7 +53,7 @@ class ProductController {
             });
         }
         catch (error) {
-            res.status(500).json({ message: "Internal server error" });
+            res.status(500).json({ message: 'Internal server error' });
         }
     }
     static async createProduct(req, res) {
@@ -63,14 +65,25 @@ class ProductController {
             restaurantId: body.restaurant_id
         };
         try {
-            if (product.name !== '' && product.description !== '' && product.price > 1 && product.restaurantId >= 1 && Object.keys(body).length === 4) {
+            if (product.name !== '' &&
+                product.description !== '' &&
+                product.price > 1 &&
+                product.restaurantId >= 1 &&
+                Object.keys(body).length === 4) {
                 const sql = `INSERT INTO products (name, description, price, restaurant_id) VALUES (?, ?, ?, ?)`;
-                const params = [product.name, product.description, product.price, product.restaurantId];
+                const params = [
+                    product.name,
+                    product.description,
+                    product.price,
+                    product.restaurantId
+                ];
                 app_1.db.execute(sql, params, async (error) => {
                     if (error)
                         throw error;
                     else {
-                        res.status(201).send({ message: `Product ${product.name} was created!` });
+                        res
+                            .status(201)
+                            .send({ message: `Product ${product.name} was created!` });
                     }
                 });
             }
@@ -119,7 +132,9 @@ class ProductController {
                 if (error)
                     throw error;
                 else if (results.affectedRows === 0) {
-                    res.status(404).send({ message: "Product doesn't exist or doesn't have the right format" });
+                    res.status(404).send({
+                        message: "Product doesn't exist or doesn't have the right format"
+                    });
                 }
                 else {
                     res.status(200).send({ message: 'Product deleted!' });
@@ -127,7 +142,7 @@ class ProductController {
             });
         }
         catch (error) {
-            res.status(500).json({ message: "Internal server error" });
+            res.status(500).json({ message: 'Internal server error' });
         }
     }
 }

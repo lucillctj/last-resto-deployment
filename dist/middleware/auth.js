@@ -27,11 +27,14 @@ const verifyAuth = (req, res, next) => {
 };
 exports.verifyAuth = verifyAuth;
 function generateAccessToken(userId) {
-    return jsonwebtoken_1.default.sign({ userId: userId }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1800s' });
+    return jsonwebtoken_1.default.sign({ userId: userId }, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: '1800s'
+    });
 }
 exports.generateAccessToken = generateAccessToken;
 const setTokenCookie = (res, token) => {
-    res.cookie('token', token, {
+    res
+        .cookie('token', token, {
         maxAge: 7200000,
         secure: false,
         httpOnly: true
@@ -40,8 +43,7 @@ const setTokenCookie = (res, token) => {
 };
 exports.setTokenCookie = setTokenCookie;
 const clearTokenCookie = (res) => {
-    res.clearCookie('token')
-        .status(200);
+    res.clearCookie('token').status(200);
 };
 exports.clearTokenCookie = clearTokenCookie;
 // export function generateRefreshToken(userId: any) {

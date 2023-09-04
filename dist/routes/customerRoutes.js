@@ -14,7 +14,7 @@ const customerRoutes = () => {
     router.get('/data/customer/:customer/:user', auth_1.verifyAuth, customerController_1.CustomerController.getDataCustomer);
     router.get('/:id/get-user/user/:user', auth_1.verifyAuth, customerController_1.CustomerController.getUserIdByProductId);
     router.put('/update/:user', auth_1.verifyAuth, customerController_1.CustomerController.updateCustomer);
-    router.put('/update-product-id/:user', customerController_1.CustomerController.updateProductId);
+    router.put('/update-product-id/:user', auth_1.verifyAuth, customerController_1.CustomerController.updateProductId);
     router.get('/:user/product', auth_1.verifyAuth, customerController_1.CustomerController.getProductIdByUserId);
     return router;
 };

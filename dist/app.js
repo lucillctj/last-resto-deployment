@@ -16,13 +16,12 @@ const restaurantRoutes_1 = require("./routes/restaurantRoutes");
 const productRoutes_1 = require("./routes/productRoutes");
 const adminRoutes_1 = require("./routes/adminRoutes");
 const usersRoutes_1 = require("./routes/usersRoutes");
-// import helmet from "helmet";
+// import helmet from 'helmet';
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 const corsOptions = {
-    origin: 'http://localhost:3030',
-    // origin: 'https://last-resto-web-service.onrender.com',
+    origin: 'https://last-resto-web-service.onrender.com',
     credentials: true
 };
 app.use((0, cors_1.default)(corsOptions));
@@ -45,7 +44,6 @@ app.use('/restaurants', (0, restaurantRoutes_1.restaurantRoutes)());
 app.use('/products', (0, productRoutes_1.productRoutes)());
 app.get('/', (req, res) => {
     res.sendFile(process.cwd() + "/dist/view/dist/index.html");
-    // res.sendFile(path.resolve("dist/view/dist/index.html"))
 });
 const PORT = process.env.PORT || 3030;
 app.listen(PORT, () => {

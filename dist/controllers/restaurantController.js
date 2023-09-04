@@ -18,14 +18,33 @@ class RestaurantController {
             restaurantOwnerId: requestId
         };
         try {
-            if (restaurant.name !== '' && restaurant.description !== '' && restaurant.address !== '' && restaurant.postCode !== '' && restaurant.city !== '' && restaurant.phone !== '' && restaurant.restaurantOwnerId >= 1 && (Object.keys(body).length === 7 || 8)) {
-                const sql = `INSERT INTO restaurants (name, description, address, post_code, city, phone, website, is_available, restaurant_owner_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-                const params = [restaurant.name, restaurant.description, restaurant.address, restaurant.postCode, restaurant.city, restaurant.phone, restaurant.website, false, restaurant.restaurantOwnerId];
+            if (restaurant.name !== '' &&
+                restaurant.description !== '' &&
+                restaurant.address !== '' &&
+                restaurant.postCode !== '' &&
+                restaurant.city !== '' &&
+                restaurant.phone !== '' &&
+                restaurant.restaurantOwnerId >= 1 &&
+                (Object.keys(body).length === 7 || 8)) {
+                const sql = `INSERT INTO restaurants (name, description, address, post_code, city, phone, website, is_available, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+                const params = [
+                    restaurant.name,
+                    restaurant.description,
+                    restaurant.address,
+                    restaurant.postCode,
+                    restaurant.city,
+                    restaurant.phone,
+                    restaurant.website,
+                    false,
+                    restaurant.restaurantOwnerId
+                ];
                 app_1.db.execute(sql, params, async (error) => {
                     if (error)
                         throw error;
                     else {
-                        res.status(201).send({ message: `Restaurant ${restaurant.name} was created!` });
+                        res
+                            .status(201)
+                            .send({ message: `Restaurant ${restaurant.name} was created!` });
                     }
                 });
             }
@@ -44,18 +63,18 @@ class RestaurantController {
             });
         }
         catch (error) {
-            res.status(500).json({ message: "Internal server error" });
+            res.status(500).json({ message: 'Internal server error' });
         }
     }
     static async getRestaurantByUserId(req, res) {
         const userRequestId = parseInt(req.params.user);
         try {
-            app_1.db.query(`SELECT * FROM restaurants WHERE restaurant_owner_id =${userRequestId}`, (error, results) => {
+            app_1.db.query(`SELECT * FROM restaurants WHERE user_id =${userRequestId}`, (error, results) => {
                 return res.status(200).send(results);
             });
         }
         catch (error) {
-            res.status(500).json({ message: "Internal server error" });
+            res.status(500).json({ message: 'Internal server error' });
         }
     }
     static async getRestaurantDashboard(req, res) {
@@ -65,7 +84,9 @@ class RestaurantController {
                 if (error)
                     throw error;
                 else if (!results) {
-                    res.status(404).send({ message: "Id doesn't exist or doesn't have the right format" });
+                    res.status(404).send({
+                        message: "Id doesn't exist or doesn't have the right format"
+                    });
                 }
                 else {
                     res.status(200).send(results[0]);
@@ -73,7 +94,7 @@ class RestaurantController {
             });
         }
         catch (error) {
-            res.status(500).json({ message: "Internal server error" });
+            res.status(500).json({ message: 'Internal server error' });
         }
     }
     static async updateRestaurant(req, res) {
@@ -92,17 +113,36 @@ class RestaurantController {
             restaurantOwnerId: requestUserId
         };
         try {
-            if (bodyRestaurant.name !== '' && bodyRestaurant.description !== '' && bodyRestaurant.address !== '' && bodyRestaurant.postCode !== '' && bodyRestaurant.city !== '' && bodyRestaurant.phone !== '' && Object.keys(body).length >= 6) {
-                const sql = `UPDATE restaurants SET name = ?, description = ?, address = ?, post_code = ?, city = ?, phone = ?, website = ?, restaurant_owner_id = ? WHERE restaurant_id = ${restaurantRequestId}`;
-                const params = [bodyRestaurant.name, bodyRestaurant.description, bodyRestaurant.address, bodyRestaurant.postCode, bodyRestaurant.city, bodyRestaurant.phone, bodyRestaurant.website, bodyRestaurant.restaurantOwnerId];
+            if (bodyRestaurant.name !== '' &&
+                bodyRestaurant.description !== '' &&
+                bodyRestaurant.address !== '' &&
+                bodyRestaurant.postCode !== '' &&
+                bodyRestaurant.city !== '' &&
+                bodyRestaurant.phone !== '' &&
+                Object.keys(body).length >= 6) {
+                const sql = `UPDATE restaurants SET name = ?, description = ?, address = ?, post_code = ?, city = ?, phone = ?, website = ?, user_id = ? WHERE restaurant_id = ${restaurantRequestId}`;
+                const params = [
+                    bodyRestaurant.name,
+                    bodyRestaurant.description,
+                    bodyRestaurant.address,
+                    bodyRestaurant.postCode,
+                    bodyRestaurant.city,
+                    bodyRestaurant.phone,
+                    bodyRestaurant.website,
+                    bodyRestaurant.restaurantOwnerId
+                ];
                 app_1.db.execute(sql, params, async (error, results) => {
                     if (error)
                         throw error;
                     else if (results.affectedRows === 0) {
-                        res.status(404).send({ message: "Restaurant id doesn't exist or doesn't have the right format" });
+                        res.status(404).send({
+                            message: "Restaurant id doesn't exist or doesn't have the right format"
+                        });
                     }
                     else {
-                        res.status(201).send({ message: `Restaurant ${bodyRestaurant.name} was updated!` });
+                        res.status(201).send({
+                            message: `Restaurant ${bodyRestaurant.name} was updated!`
+                        });
                     }
                 });
             }
@@ -125,10 +165,14 @@ class RestaurantController {
                     if (error)
                         throw error;
                     else if (results.affectedRows === 0) {
-                        res.status(404).send({ message: "Restaurant id doesn't exist or doesn't have the right format" });
+                        res.status(404).send({
+                            message: "Restaurant id doesn't exist or doesn't have the right format"
+                        });
                     }
                     else {
-                        res.status(201).send({ message: `Restaurant availability was updated!` });
+                        res
+                            .status(201)
+                            .send({ message: `Restaurant availability was updated!` });
                     }
                 });
             }
@@ -147,10 +191,14 @@ class RestaurantController {
                 if (error)
                     throw error;
                 else if (results.affectedRows === 0) {
-                    res.status(404).send({ message: "Restaurant id doesn't exist or doesn't have the right format" });
+                    res.status(404).send({
+                        message: "Restaurant id doesn't exist or doesn't have the right format"
+                    });
                 }
                 else {
-                    res.status(200).send({ message: `Restaurant ${requestId} was deleted!` });
+                    res
+                        .status(200)
+                        .send({ message: `Restaurant ${requestId} was deleted!` });
                 }
             });
         }
