@@ -3,7 +3,6 @@ import { db } from '../app';
 import { QueryError, ResultSetHeader } from 'mysql2';
 import { Product } from '../models/product';
 import { Restaurant } from '../models/restaurant';
-import { Customer } from '../models/customer';
 
 export class ProductController {
   // public static async getAllProducts(req: Request, res: Response): Promise<void> {

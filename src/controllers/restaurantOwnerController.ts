@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { db } from '../app';
 import { RestaurantOwner } from '../models/restaurantOwner';
 import { QueryError } from 'mysql2';

@@ -10,7 +10,7 @@ import { restaurantRoutes } from './routes/restaurantRoutes';
 import { productRoutes } from './routes/productRoutes';
 import { adminRoutes } from './routes/adminRoutes';
 import { usersRoutes } from './routes/usersRoutes';
-// import helmet from 'helmet';
+// import helmet from "helmet";
 
 dotenv.config();
 
@@ -33,7 +33,7 @@ const apiLimiter = rateLimit({
 });
 app.use(apiLimiter);
 
-app.use(express.static(process.cwd()+"/dist/view/dist/"));
+app.use(express.static(process.cwd()+"/src/view/dist-angular/"));
 // app.use(helmet());
 
 app.use('/customers', customerRoutes());
@@ -44,7 +44,7 @@ app.use('/restaurants', restaurantRoutes());
 app.use('/products', productRoutes());
 
 app.get('/', (req,res) => {
-    res.sendFile(process.cwd()+"/dist/view/dist/index.html");
+    res.sendFile(process.cwd()+"/src/view/dist-angular/index.html");
 });
 
 const PORT = process.env.PORT || 3030;
