@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { db } from '../app';
 import { Admin } from '../models/admin';
 import { QueryError, ResultSetHeader } from 'mysql2';
@@ -8,7 +8,8 @@ import { generateAccessToken } from '../middleware/auth';
 export class AdminController {
   public static async createAdminAccount(
     req: Request,
-    res: Response
+    res: Response,
+    next: NextFunction
   ): Promise<void> {
     const body = req.body;
     const bodyAdmin: Admin = {
