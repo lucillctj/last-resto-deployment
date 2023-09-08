@@ -10,7 +10,7 @@ import { restaurantRoutes } from './routes/restaurantRoutes';
 import { productRoutes } from './routes/productRoutes';
 import { adminRoutes } from './routes/adminRoutes';
 import { usersRoutes } from './routes/usersRoutes';
-// import helmet from "helmet";
+import helmet from "helmet";
 
 dotenv.config();
 
@@ -34,8 +34,14 @@ const apiLimiter = rateLimit({
 app.use(apiLimiter);
 
 app.use(express.static(process.cwd()+"/src/view/dist-angular/"));
-// app.use(helmet());
-
+app.use(helmet());
+app.use((req, res, next) => {
+  res.setHeader(
+      "Permissions-Policy",
+      'geolocation=(self "https://example.com"), microphone=()'
+  );
+  next();
+});
 app.use('/customers', customerRoutes());
 app.use('/restaurant-owners', restaurantOwnerRoutes());
 app.use('/admins', adminRoutes());
