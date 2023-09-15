@@ -38,7 +38,7 @@ app.use(helmet());
 app.use((req, res, next) => {
   res.setHeader(
       "Permissions-Policy",
-      'geolocation=(self "https://example.com"), microphone=()'
+      'geolocation=(self)'
   );
   next();
 });
