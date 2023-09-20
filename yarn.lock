@@ -47,10 +47,10 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.4.tgz#0b92dcc0cc1c81f6f306a381f28e31b1a56536e9"
   integrity sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==
 
-"@tsconfig/node17@^17.1.1":
-  version "17.1.1"
-  resolved "https://registry.yarnpkg.com/@tsconfig/node17/-/node17-17.1.1.tgz#e5682a7f19e17d32bfcc01b98e475908558640b3"
-  integrity sha512-2Momj8YxRye4wCXIqp0EouepR3TK8PmI7MRt9u+9zDqZ0y4B31qGvY00arIbbk4E4aKp9vQRa3rvWtNTKz9/4g==
+"@tsconfig/node18@^18.1.1":
+  version "18.2.2"
+  resolved "https://registry.yarnpkg.com/@tsconfig/node18/-/node18-18.2.2.tgz#81fb16ecff0d400b1cbadbf76713b50f331029ce"
+  integrity sha512-d6McJeGsuoRlwWZmVIeE8CUA27lu6jLjvv1JzqmpsytOYYbVi1tHZEnwCNVOXnj4pyLvneZlFlpXUK+X9wBWyw==
 
 "@types/bcryptjs@^2.4.3":
   version "2.4.3"

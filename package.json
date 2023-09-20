@@ -9,7 +9,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@tsconfig/node17": "^17.1.1",
+    "@tsconfig/node18": "^18.1.1",
     "@types/bcryptjs": "^2.4.3",
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.13",

@@ -32,7 +32,6 @@ const apiLimiter = rateLimit({
   legacyHeaders: false
 });
 app.use(apiLimiter);
-
 app.use(express.static(process.cwd()+"/src/view/dist-angular/"));
 app.use(helmet());
 app.use((req, res, next) => {
@@ -40,16 +39,18 @@ app.use((req, res, next) => {
       "Permissions-Policy",
       'geolocation=(self)'
   );
+  res.setHeader('Cache-Control', 'public, max-age=3600');
+
   next();
 });
-app.use('/customers', customerRoutes());
-app.use('/restaurant-owners', restaurantOwnerRoutes());
-app.use('/admins', adminRoutes());
-app.use('/users', usersRoutes());
-app.use('/restaurants', restaurantRoutes());
-app.use('/products', productRoutes());
+app.use('/api/customers', customerRoutes());
+app.use('/api/restaurant-owners', restaurantOwnerRoutes());
+app.use('/api/admins', adminRoutes());
+app.use('/api/users', usersRoutes());
+app.use('/api/restaurants', restaurantRoutes());
+app.use('/api/products', productRoutes());
 
-app.get('/', (req,res) => {
+app.get('*', (req,res) => {
     res.sendFile(process.cwd()+"/src/view/dist-angular/index.html");
 });
 
