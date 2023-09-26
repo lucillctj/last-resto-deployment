@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { db } from '../app';
 import { RestaurantOwner } from '../models/restaurantOwner';
 import { QueryError } from 'mysql2';
@@ -186,14 +186,16 @@ function errorValues(
   newRestaurantOwner: RestaurantOwner
 ): any {
   if (
-    error.sqlMessage ===
-    `Duplicate entry '${newRestaurantOwner.email}' for key 'users.email'`
+    error.sqlMessage.includes(
+      `Duplicate entry '${newRestaurantOwner.email}' for key 'users.email'`
+    )
   ) {
     res.status(400);
     res.send('Cet email existe déjà !');
   } else if (
-    error.sqlMessage ===
-    `Duplicate entry '${newRestaurantOwner.phone}' for key 'users.phone'`
+    error.sqlMessage.includes(
+      `Duplicate entry '${newRestaurantOwner.phone}' for key 'users.phone'`
+    )
   ) {
     res.status(400);
     res.send('Ce numéro de téléphone existe déjà !');

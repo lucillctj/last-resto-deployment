@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { db } from '../app';
 import { Admin } from '../models/admin';
 import { QueryError, ResultSetHeader } from 'mysql2';
@@ -8,8 +8,7 @@ import { generateAccessToken } from '../middleware/auth';
 export class AdminController {
   public static async createAdminAccount(
     req: Request,
-    res: Response,
-    next: NextFunction
+    res: Response
   ): Promise<void> {
     const body = req.body;
     const bodyAdmin: Admin = {
@@ -236,14 +235,16 @@ function errorValues(
   newAdmin: Admin
 ): any {
   if (
-    error.sqlMessage ===
-    `Duplicate entry '${newAdmin.email}' for key 'users.email'`
+    error.sqlMessage.includes(
+      `Duplicate entry '${newAdmin.email}' for key 'users.email'`
+    )
   ) {
     res.status(400);
     res.send('Cet email existe déjà !');
   } else if (
-    error.sqlMessage ===
-    `Duplicate entry '${newAdmin.phone}' for key 'users.phone'`
+    error.sqlMessage.includes(
+      `Duplicate entry '${newAdmin.phone}' for key 'users.phone'`
+    )
   ) {
     res.status(400);
     res.send('Ce numéro de téléphone existe déjà !');

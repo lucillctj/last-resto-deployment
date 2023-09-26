@@ -73,6 +73,7 @@ export class CustomerController {
           .json({ error: 'Certains champs sont manquants ou incorrects.' });
       }
     } catch (error) {
+      console.log(error);
       res.status(400).json({ error: 'Erreur !' });
     }
   }
@@ -316,20 +317,23 @@ function errorValues(
   newCustomer: Customer
 ): any {
   if (
-    error.sqlMessage ===
-    `Duplicate entry '${newCustomer.email}' for key 'users.email'`
+    error.sqlMessage.includes(
+      `Duplicate entry '${newCustomer.email}' for key 'users.email'`
+    )
   ) {
     res.status(400);
     res.send('Cet email existe déjà !');
   } else if (
-    error.sqlMessage ===
-    `Duplicate entry '${newCustomer.phone}' for key 'users.phone'`
+    error.sqlMessage.includes(
+      `Duplicate entry '${newCustomer.phone}' for key 'users.phone'`
+    )
   ) {
     res.status(400);
     res.send('Ce numéro de téléphone existe déjà !');
   } else {
     res.status(400);
-    res.send('Erreur !');
+    console.log(error);
+    res.send('Erreur inattendue !');
   }
   res.end();
 }
