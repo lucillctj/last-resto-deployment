@@ -18,7 +18,8 @@ const app: Express = express();
 app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 
 const corsOptions = {
-  origin: 'https://last-resto.onrender.com',
+  // origin: 'https://last-resto.onrender.com',
+  origin: 'http://localhost:3030',
   credentials: true
 };
 app.use(cors(corsOptions));
