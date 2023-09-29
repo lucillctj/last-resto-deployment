@@ -66,22 +66,10 @@ export class RestaurantOwnerController {
     }
   }
 
-  // public static async getAllRestaurantOwners(req: Request, res: Response): Promise<void> {
-  //     try {
-  //         db.query(
-  //             `SELECT * FROM users WHERE role = 'restaurant owner'`,
-  //             (error: Error | null, results: ResultSetHeader) => {
-  //                 return res.status(200).send(results);
-  //             })
-  //     } catch (error) {
-  //         res.status(500).json({message: "Internal server error"});
-  //     }
-  // }
-
   public static async getRestaurantOwnerDashboard(
     req: Request,
     res: Response
-  ): Promise<void> {
+  ): Promise<RestaurantOwner | void> {
     const requestId = parseInt(req.params.user);
     try {
       db.query(

@@ -79,7 +79,7 @@ export class RestaurantController {
   public static async getRestaurantByUserId(
     req: Request,
     res: Response
-  ): Promise<void> {
+  ): Promise<Restaurant | void> {
     const userRequestId = parseInt(req.params.user);
     try {
       db.query(

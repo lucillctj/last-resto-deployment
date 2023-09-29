@@ -150,23 +150,6 @@ export class CustomerController {
     }
   }
 
-  // public static async deleteProductIdByUserId(req: Request, res: Response): Promise<void> {
-  //     const userId = parseInt(req.params.user);
-  //
-  //     try {
-  //         db.query(
-  //             `UPDATE users SET product_id = NULL WHERE role = 'customer' AND user_id = ${userId}`,
-  //             (error: Error | null, results) => {
-  //                 if (error) throw error;
-  //                 else {
-  //                     res.status(200).json({message: "Product id de l'utilisateur mis à jour"});
-  //                 }
-  //             })
-  //     } catch (error) {
-  //         res.status(500).json({message: "Internal server error"});
-  //     }
-  // }
-
   public static async updateCustomer(
     req: Request,
     res: Response

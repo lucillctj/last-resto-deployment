@@ -114,19 +114,6 @@ export class AdminController {
     }
   }
 
-  public static async getAllAdmins(req: Request, res: Response): Promise<void> {
-    try {
-      db.query(
-        `SELECT * FROM users WHERE role = 'admin'`,
-        (error: Error | null, results: ResultSetHeader) => {
-          return res.status(200).send(results);
-        }
-      );
-    } catch (error) {
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  }
-
   public static async getAdminDashboard(
     req: Request,
     res: Response

@@ -5,18 +5,6 @@ import { Product } from '../models/product';
 import { Restaurant } from '../models/restaurant';
 
 export class ProductController {
-  // public static async getAllProducts(req: Request, res: Response): Promise<void> {
-  //     try {
-  //         db.query(
-  //             `SELECT * FROM products`,
-  //             (error: Error | null, results: ResultSetHeader) => {
-  //                 return res.status(200).send(results);
-  //             })
-  //     } catch (error) {
-  //         res.status(500).json({message: "Internal server error"});
-  //     }
-  // }
-
   public static async getProductsByRestaurantId(
     req: Request,
     res: Response
