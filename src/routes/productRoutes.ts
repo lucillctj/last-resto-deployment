@@ -12,7 +12,7 @@ export const productRoutes = () => {
   );
   // router.get('/', ProductController.getAllProducts);
   router.get(
-    '/restaurant/:id/user/:user',
+    '/restaurant/:id',
     ProductController.getProductsByRestaurantId
   );
   router.get(
